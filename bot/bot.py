@@ -13,7 +13,7 @@ def call_telegram_method(method, data={}):
 
 def init():
 	result = call_telegram_method('setWebhook', {
-		'url': 'http://localhost:8000/bot'
+		'url': 'http://https://mcs-python-bot.herokuapp.com/bot'
 	})
 	print(result)
 	send(chat_id, 'Server started')
