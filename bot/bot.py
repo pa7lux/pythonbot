@@ -1,5 +1,8 @@
 from bot import req
 import json
+import codecs
+
+reader = codecs.getreader("utf-8")
 
 from django.http import HttpResponse
 
@@ -26,13 +29,14 @@ def send(chat_id, message):
 	})
 
 def process(request):
-	data = json.loads(request.body, encoding='utf-8')
-
+	data = json.loads(request.read().decode('utf-8'))
+	
 	message = data.get('message', {})
 	text = message.get('text')
 	sender_id = message.get('from', {}).get('id')
 
-	if message == 'Hello':
+
+	if text == 'Hello':
 		send(sender_id, 'Hello yourself')
 
 	return HttpResponse('test')
