@@ -1,0 +1,22 @@
+{
+  "update_id": 67710028,
+  "message": {
+    "message_id": 1,
+    "from": {
+      "id": 183765525,
+      "first_name": "Dev",
+      "last_name": "Bot",
+      "username": "bottestertesto"
+    },
+    "chat": {
+      "id": 183765525,
+      "first_name": "Dev",
+      "last_name": "Bot",
+      "username": "bottestertesto",
+      "type": "private"
+    },
+    "text": "/start",
+  }
+}
+
+{"message": {"text": "test", "from": {"id": 183765525}}}
