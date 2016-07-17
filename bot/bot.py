@@ -8,6 +8,7 @@ from django.http import HttpResponse
 
 token = '254968587:AAE1TDdb0f__jl_LDKkpCjtd2eE4UHsTn1Y'
 api = 'https://api.telegram.org/bot{token}/{method}'
+weather_api_key = '54995be76b41b08edc2635c6ba445725'
 
 chat_id = '183765525'
 
@@ -29,14 +30,23 @@ def send(chat_id, message):
 	})
 
 def process(request):
-	data = json.loads(request.read().decode('utf-8'))
+	body = request.read().decode('utf-8')
+	data = json.loads(body)
+
+	print(data)
 	
 	message = data.get('message', {})
 	text = message.get('text')
 	sender_id = message.get('from', {}).get('id')
 
 
-	if text == 'Hello':
+	if text.lower() == 'hello':
 		send(sender_id, 'Hello yourself')
 
-	return HttpResponse('test')
+	if text.lower() == 'cat':
+		call_telegram_method('sendSticker', {
+			'chat_id': sender_id,
+			'sticker': 'BQADAgADBQADIyIEBsnMqhlT3UvLAg'
+		})
+
+	return HttpResponse('')
